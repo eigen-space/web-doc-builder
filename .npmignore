@@ -1,0 +1,1 @@
+# If this file is not created, yarn use the .gitignore file and denied publish the dist directory

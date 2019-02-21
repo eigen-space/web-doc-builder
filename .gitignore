@@ -1,0 +1,48 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/out-tsc
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# documentation examples
+src/components/**/*.md
+
+# production
+/build
+/styleguide
+
+# doc builder
+src/doc-builder/**/*.js
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# idea
+/.idea
+
+# jest diffs
+/src/**/*-diff.png
+
+# sandbox
+/src/sandbox/sandbox.tsx
+/src/sandbox/sandbox.styles.ts
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# tmp
+*.tmp
