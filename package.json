@@ -4,14 +4,14 @@
     "private": true,
     "scripts": {
         "build:doc": "yarn doc:compile-builder && yarn doc:generate && yarn build:sg",
-        "build:package": "webpack --display-error-details --p --progress --mode production",
+        "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production",
         "doc:compile-builder": "yarn tsc src/doc-builder/index.ts",
         "doc:generate": "node dev/scripts/generate-doc.js",
         "lint": "tslint 'src/**/*.{ts,tsx}'",
         "test": "jest --coverage",
         "test:ci": "jest --ci --coverage",
         "tsc": "tsc",
-        "deploy:publish": "node dev/scripts/publish",
+        "deploy:publish": "yarn unpublish && yarn publish",
         "hooks:pre-push": "yarn test && lint-staged"
     },
     "husky": {
@@ -25,12 +25,12 @@
         ]
     },
     "dependencies": {
-        "react": "16.7.0"
+        "typescript": "3.3.1",
+        "@eigenspace/helper-scripts": "1.0.1",
+        "@phenomnomnominal/tsquery": "3.0.0"
     },
     "devDependencies": {
         "@eigenspace/codestyle": "1.1.12",
-        "@eigenspace/helper-scripts": "1.0.1",
-        "@phenomnomnominal/tsquery": "3.0.0",
         "@types/jest": "22.2.2",
         "@types/node": "11.9.4",
         "@types/react": "16.8.3",
@@ -43,16 +43,9 @@
         "ts-jest": "23.10.5",
         "ts-loader": "5.3.3",
         "tslint": "5.12.1",
-        "typescript": "3.3.1",
         "webpack": "4.29.0",
         "webpack-cli": "3.2.1"
     },
-    "browserslist": [
-        ">0.2%",
-        "not dead",
-        "not ie <= 11",
-        "not op_mini all"
-    ],
     "main": "index.js",
     "types": "index.d.ts",
     "repository": {
