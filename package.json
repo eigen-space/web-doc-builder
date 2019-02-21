@@ -8,7 +8,7 @@
         "test": "jest --coverage",
         "test:ci": "jest --ci --coverage",
         "tsc": "tsc",
-        "deploy:publish": "npm publish",
+        "deploy:publish": "npm unpublish @arrival/doc-builder && npm publish ./dist",
         "hooks:pre-push": "yarn test && lint-staged"
     },
     "husky": {
@@ -22,9 +22,9 @@
         ]
     },
     "dependencies": {
-        "typescript": "3.3.1",
         "@eigenspace/helper-scripts": "1.0.1",
-        "@phenomnomnominal/tsquery": "3.0.0"
+        "@phenomnomnominal/tsquery": "3.0.0",
+        "typescript": "3.3.1"
     },
     "devDependencies": {
         "@eigenspace/codestyle": "1.1.12",
