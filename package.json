@@ -3,10 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "build:doc": "yarn doc:compile-builder && yarn doc:generate && yarn build:sg",
         "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production",
-        "doc:compile-builder": "yarn tsc src/doc-builder/index.ts",
-        "doc:generate": "node dev/scripts/generate-doc.js",
         "lint": "tslint 'src/**/*.{ts,tsx}'",
         "test": "jest --coverage",
         "test:ci": "jest --ci --coverage",
