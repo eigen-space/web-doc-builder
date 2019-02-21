@@ -8,7 +8,7 @@
         "test": "jest --coverage",
         "test:ci": "jest --ci --coverage",
         "tsc": "tsc",
-        "deploy:publish": "npm unpublish @arrival/doc-builder && npm publish ./dist",
+        "deploy:publish": "npm unpublish @arrival/doc-builder@0.0.1 && npm publish ./dist",
         "hooks:pre-push": "yarn test && lint-staged"
     },
     "husky": {
