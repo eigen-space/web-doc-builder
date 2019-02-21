@@ -16,7 +16,7 @@ module.exports = {
         libraryTarget: 'commonjs2'
     },
     resolve: {
-        extensions: ['.ts']
+        extensions: ['.ts', '.js']
     },
     module: {
         rules: [
@@ -31,7 +31,7 @@ module.exports = {
         new CleanWebpackPlugin('./dist/*'),
         new CopyWebpackPlugin([
             { from: 'package.json', to: 'package.json' },
-            { from: 'src/@types/common.d.ts', to: 'types/src/@types/common.d.ts' }
+            { from: 'README.md', to: 'README.md' }
         ]),
         new DtsBundlePlugin({
             name: libraryName,
@@ -42,9 +42,21 @@ module.exports = {
         })
     ],
     externals: {
-        react: {
-            root: 'React',
-            commonjs2: 'react'
+        typescript: {
+            root: 'typescript',
+            commonjs2: 'typescript'
+        },
+        '@eigenspace/helper-scripts': {
+            root: '@eigenspace/helper-scripts',
+            commonjs2: '@eigenspace/helper-scripts'
+        },
+        '@phenomnomnominal/tsquery': {
+            root: '@phenomnomnominal/tsquery',
+            commonjs2: '@phenomnomnominal/tsquery'
         }
+    },
+    target: 'node',
+    stats: {
+        warnings: false
     }
 };
