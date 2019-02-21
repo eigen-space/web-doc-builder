@@ -1,7 +1,7 @@
 {
     "name": "@arrival/doc-builder",
     "version": "0.0.1",
-    "private": true,
+    "private": false,
     "scripts": {
         "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production",
         "lint": "tslint 'src/**/*.{ts,tsx}'",
