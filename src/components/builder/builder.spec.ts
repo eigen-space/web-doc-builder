@@ -12,12 +12,13 @@ describe('Builder', () => {
         return prepareExample(result);
     }
 
-    function getExpectedResult(title: string, imports: string[], statements: string[]): string {
+    function getExpectedResult(title: string, imports: string[], statements: string[], jsx: string): string {
         return [
             `${title}:`,
             '```jsx',
             `${imports.join('\n')}`,
             `${statements.join('\n')}`,
+            jsx,
             '```'
         ].join('\n\n');
     }
@@ -44,7 +45,7 @@ describe('Builder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult('subtitle', [imports], [statements[0], '<Component/>;']);
+        const expected = getExpectedResult('subtitle', [imports], [statements[0]], '<Component/>');
         expect(example).toEqual(expected);
     });
 
@@ -63,7 +64,7 @@ describe('Builder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult(`subtitle`, [], [`<Jsx/>;`]);
+        const expected = getExpectedResult(`subtitle`, [], [], `<Jsx/>`);
 
         expect(example).toEqual(expected);
     });
@@ -86,7 +87,7 @@ describe('Builder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult(`subtitle`, [imports], [...statements.slice(0, 2), `<Jsx/>`]);
+        const expected = getExpectedResult(`subtitle`, [imports], statements.slice(0, 2), `<Jsx/>`);
 
         expect(example).toEqual(expected);
     });
