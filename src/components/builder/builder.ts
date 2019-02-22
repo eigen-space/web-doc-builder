@@ -90,16 +90,38 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): str
             const str = imports.get(key);
             return str && str.trim();
         }).join('\n');
-        const statementTexts = node.statements.map(statement => statement.getText());
+        const statementTexts = node.statements.map(statement => statement.getFullText());
 
         // Get right-side part of component statement
         // istanbul ignore next
         const componentText = statementTexts.pop() || '';
-        statementTexts.push(componentText.slice(componentText.indexOf('=') + 1).trim());
+        const jsx = removeDeclarationFromJsx(componentText);
 
-        const statementFragments = statementTexts.join('\n');
-        example.push([`${node.title}:`, '```jsx', `${importFragments}`, `${statementFragments}`, '```'].join('\n\n'));
+        const statementFragments = statementTexts.map(txt => prettify(txt)).join('\n');
+        example.push([
+            `${node.title}:`,
+            '```jsx',
+            `${importFragments}`,
+            `${statementFragments}`,
+            `${prettify(jsx)}`,
+            '```'
+        ].join('\n\n'));
     });
 
     return example.join('\n\n');
+}
+
+function removeDeclarationFromJsx(str: string): string {
+    const match = str.match(/[a-z].*=\s/);
+    // JSX component must be binary expression by default
+    // istanbul ignore next
+    str = match ? str.replace(match[0], '') : str;
+    return str.endsWith(';') ? str.slice(0, -1) : str;
+}
+
+function prettify(str: string): string {
+    str = str.replace(/^\r?\n/gm, '');
+    const firstSymbolIndex = str.search(/[^\s]/);
+    const indent = ' '.repeat(firstSymbolIndex);
+    return str.split(`${indent}`).join('');
 }
