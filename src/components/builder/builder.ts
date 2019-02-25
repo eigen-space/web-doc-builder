@@ -123,5 +123,6 @@ function prettify(str: string): string {
     str = str.replace(/^\r?\n/gm, '');
     const firstSymbolIndex = str.search(/[^\s]/);
     const indent = ' '.repeat(firstSymbolIndex);
-    return str.split(`${indent}`).join('');
+    const startWithIndent = new RegExp(`^${indent}`, 'gm');
+    return str.replace(startWithIndent, '');
 }
