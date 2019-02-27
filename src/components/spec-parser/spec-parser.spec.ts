@@ -1,12 +1,12 @@
-import { parseSpec } from './parser';
+import { parse } from './spec-parser';
 import { tsquery } from '@phenomnomnominal/tsquery';
 import { NodeType } from '../../enums/node.enum';
 
-describe('Parser', () => {
+describe('SpecParser', () => {
 
     it('should return empty `ParseSpecResult` when input data empty', () => {
         const data = tsquery.ast('');
-        const result = parseSpec(data);
+        const result = parse(data);
 
         expect(result.imports).toEqual(new Map());
         expect(result.tree).toBeNull();
@@ -15,7 +15,7 @@ describe('Parser', () => {
     it('should correct parse named imports', () => {
         const ast = tsquery.ast(`import { Props, Component } from './component'`);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         const expectedImportsStorage = new Map<string, string>([
             ['Props', `import { Props } from './component'`],
@@ -29,7 +29,7 @@ describe('Parser', () => {
     it('should correct parse namespace imports', () => {
         const ast = tsquery.ast(`import * as Props from './component'`);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         const expectedImportsStorage = new Map<string, string>([
             ['Props', `import * as Props from './component'`]
@@ -41,7 +41,7 @@ describe('Parser', () => {
     it('should correct parse default imports', () => {
         const ast = tsquery.ast(`import Props from './component'`);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         const expectedImportsStorage = new Map<string, string>([
             ['Props', `import Props from './component'`]
@@ -58,7 +58,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).toBeNull();
     });
@@ -71,7 +71,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.type).toEqual(NodeType.DESCRIBE);
@@ -92,7 +92,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -110,7 +110,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -128,7 +128,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -146,7 +146,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -164,7 +164,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -186,7 +186,7 @@ describe('Parser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parseSpec(ast);
+        const result = parse(ast);
 
         expect(result.tree).not.toBeNull();
         const documentationBlock = result.tree && result.tree.children[0];

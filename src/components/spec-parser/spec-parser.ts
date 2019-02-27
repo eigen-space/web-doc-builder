@@ -6,7 +6,7 @@ import { SpecTreeNode } from '../../entities/spec-tree-node/spec-tree-node';
 import { NodeType } from '../../enums/node.enum';
 import { KeywordEnum } from '../../enums/keyword.enum';
 
-export function parseSpec(data: ts.SourceFile): ParseSpecResult {
+export function parse(data: ts.SourceFile): ParseSpecResult {
     const imports = parseImportStatements(data);
     const tree = buildTree(data);
 

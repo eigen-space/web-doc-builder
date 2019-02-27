@@ -6,7 +6,7 @@ import { tsquery } from '@phenomnomnominal/tsquery';
 import { AstNodeType } from '../../enums/ast-node.enum';
 import { KeywordEnum } from '../../enums/keyword.enum';
 
-export function prepareExample(data: ParseSpecResult): string | undefined {
+export function build(data: ParseSpecResult): string | undefined {
     const tree = data.tree;
     if (tree == null) {
         return;
