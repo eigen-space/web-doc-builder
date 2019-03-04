@@ -22,7 +22,7 @@
         ]
     },
     "dependencies": {
-        "@eigenspace/helper-scripts": "1.0.1",
+        "@eigenspace/helper-scripts": "1.0.8",
         "@phenomnomnominal/tsquery": "3.0.0",
         "typescript": "3.3.1"
     },
