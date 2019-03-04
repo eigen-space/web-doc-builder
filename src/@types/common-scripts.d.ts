@@ -1,4 +1,7 @@
-declare module '@eigenspace/helper-scripts/scripts/common' {
+declare module '@eigenspace/helper-scripts' {
 
-    export function walkThrough(dir: string, callback: Function, recursiveCallback?: Function): void | undefined;
+    export namespace CommonScripts {
+
+        export function walkThrough(dir: string, callback: Function, recursiveCallback?: Function): void | undefined;
+    }
 }
