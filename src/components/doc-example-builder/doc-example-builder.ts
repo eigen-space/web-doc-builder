@@ -90,7 +90,7 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): str
             const str = imports.get(key);
             return str && str.trim();
         }).join('\n');
-        const statementTexts = node.statements.map(statement => statement.getText());
+        const statementTexts = node.statements.map(statement => statement.getFullText());
 
         // Get right-side part of component statement
         // istanbul ignore next
@@ -113,7 +113,7 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): str
 
 function jsxToExpression(str: string): string {
     const rightSide = removeDeclarationFromJsx(str);
-    return removeExtraCharacters(rightSide.trim());
+    return removeExtraCharacters(rightSide);
 }
 
 function removeDeclarationFromJsx(str: string): string {
@@ -125,7 +125,7 @@ function removeDeclarationFromJsx(str: string): string {
 
 function removeExtraCharacters(str: string): string {
     const noSemicolon = str.endsWith(';') ? str.slice(0, -1) : str;
-    return noSemicolon.startsWith('(') ? noSemicolon.slice(1, -1).trim() : noSemicolon;
+    return noSemicolon.trim().startsWith('(') ? noSemicolon.trim().slice(1, -1) : noSemicolon;
 }
 
 function prettify(str: string): string {
@@ -133,5 +133,5 @@ function prettify(str: string): string {
     const firstSymbolIndex = str.search(/[^\s]/);
     const indent = ' '.repeat(firstSymbolIndex);
     const startWithIndent = new RegExp(`^${indent}`, 'gm');
-    return str.replace(startWithIndent, '');
+    return str.replace(startWithIndent, '').trim();
 }
