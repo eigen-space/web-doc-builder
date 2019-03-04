@@ -3,10 +3,10 @@ import * as path from 'path';
 import { tsquery } from '@phenomnomnominal/tsquery';
 import { parse } from './components/spec-parser/spec-parser';
 import { build } from './components/doc-example-builder/doc-example-builder';
-import { walkThrough } from '@eigenspace/helper-scripts/scripts/common';
+import { CommonScripts } from '@eigenspace/helper-scripts';
 
 export function generate(dirPath: string): void {
-    walkThrough(
+    CommonScripts.walkThrough(
         dirPath,
         (currentDir: string, file: string) => {
             const filePath = path.resolve(currentDir, file);
