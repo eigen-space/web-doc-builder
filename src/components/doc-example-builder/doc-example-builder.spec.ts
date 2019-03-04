@@ -1,12 +1,12 @@
 import { ParseSpecResult } from '../../entities/parse-spec-result/parse-spec-result';
-import { build } from './doc-example-builder';
+import { build} from './doc-example-builder';
 import { tsquery } from '@phenomnomnominal/tsquery';
 import { parse } from '../spec-parser/spec-parser';
 
 describe('DocExampleBuilder', () => {
 
     function getExample(data: string): string | undefined {
-        const ast = tsquery.ast(data);
+        const ast = tsquery.ast(data, 'example.tsx');
         const result = parse(ast);
 
         return build(result);
@@ -88,6 +88,63 @@ describe('DocExampleBuilder', () => {
         const example = getExample(data);
 
         const expected = getExpectedResult(`subtitle`, [imports], statements.slice(0, 2), `<Jsx/>`);
+
+        expect(example).toEqual(expected);
+    });
+
+    it('should process multiline component with brackets correctly', () => {
+        // noinspection HtmlUnknownAttribute
+        const component = [
+                `<CardsContainer {...props}>`,
+                `    <Card description='Mercedes' fullHeight={true} theme={theme}/>`,
+                `        {children}`,
+                `    <Card description='Ferrari' theme={theme}/>`,
+                `</CardsContainer>`
+            ].join('\n');
+
+        const data = `
+            describe('Component', () => {
+                describe('#documentation', () => {
+                    it('subtitle', () => {
+                        const component = (
+                            ${component}
+                        );
+                    })
+                })
+            })
+        `;
+
+        const example = getExample(data);
+
+        const expected = getExpectedResult(`subtitle`, [], [], component);
+
+        expect(example).toEqual(expected);
+    });
+
+    it('should process multiline component without brackets correctly', () => {
+        // noinspection HtmlUnknownAttribute
+        const component = [
+            `<CardsContainer {...props}>`,
+            `    <Card description='Mercedes' fullHeight={true} theme={theme}/>`,
+            `        {children}`,
+            `    <Card description='Ferrari' theme={theme}/>`,
+            `</CardsContainer>`
+        ].join('\n');
+
+        const data = `
+            describe('Component', () => {
+                describe('#documentation', () => {
+                    it('subtitle', () => {
+                        const component =
+                            ${component};
+                    })
+                })
+            })
+        `;
+
+        const example = getExample(data);
+
+        const expected = getExpectedResult(`subtitle`, [], [], component);
 
         expect(example).toEqual(expected);
     });

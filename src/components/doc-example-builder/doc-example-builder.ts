@@ -90,12 +90,12 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): str
             const str = imports.get(key);
             return str && str.trim();
         }).join('\n');
-        const statementTexts = node.statements.map(statement => statement.getFullText());
+        const statementTexts = node.statements.map(statement => statement.getText());
 
         // Get right-side part of component statement
         // istanbul ignore next
         const componentText = statementTexts.pop() || '';
-        const jsx = removeDeclarationFromJsx(componentText);
+        const jsx = jsxToExpression(componentText);
 
         const statementFragments = statementTexts.map(txt => prettify(txt)).join('\n');
         example.push([
@@ -111,12 +111,21 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): str
     return example.join('\n\n');
 }
 
+function jsxToExpression(str: string): string {
+    const rightSide = removeDeclarationFromJsx(str);
+    return removeExtraCharacters(rightSide.trim());
+}
+
 function removeDeclarationFromJsx(str: string): string {
     const match = str.match(/[a-z].*=\s/);
     // JSX component must be binary expression by default
     // istanbul ignore next
-    str = match ? str.replace(match[0], '') : str;
-    return str.endsWith(';') ? str.slice(0, -1) : str;
+    return match ? str.replace(match[0], '') : str;
+}
+
+function removeExtraCharacters(str: string): string {
+    const noSemicolon = str.endsWith(';') ? str.slice(0, -1) : str;
+    return noSemicolon.startsWith('(') ? noSemicolon.slice(1, -1).trim() : noSemicolon;
 }
 
 function prettify(str: string): string {
