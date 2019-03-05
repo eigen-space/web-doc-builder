@@ -149,6 +149,35 @@ describe('DocExampleBuilder', () => {
         expect(example).toEqual(expected);
     });
 
+    it('should filter correct processing named imports', () => {
+        const statements = ['const x = React.get();', 'const b = renderer.get();', 'component = <Jsx/>'];
+        const imports = `import { React, renderer } from './React';`;
+        const data = `
+            ${imports}
+            describe('Component', () => {
+                ${statements[0]}
+                describe('#documentation', () => {
+                    it('subtitle', () => {
+                        ${statements[1]}
+                        ${statements[2]}
+                    })
+                })
+            })
+        `;
+
+        const example = getExample(data);
+
+        const expectedImports = `import { React, renderer } from './React';`;
+        const expected = getExpectedResult(
+            `subtitle`,
+            [expectedImports],
+            statements.slice(0, 2),
+            `<Jsx/>`
+        );
+
+        expect(example).toEqual(expected);
+    });
+
     it('should filter unused import identifiers from imports', () => {
         const statements = ['const x = React.get();', 'const b = React.get();', 'component = <Jsx/>'];
         const imports = `import { React, renderer } from './React';`;
