@@ -97,7 +97,7 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string[]>): s
     return example.join('\n\n');
 }
 
-function buildImportFragments(node: SpecTreeNode, imports: Map<string, string[]>): string[] {
+function buildImportFragments(node: SpecTreeNode, imports: Map<string, string[]>): string {
     const filteredKeys: string[] = ['React'];
 
     node.statements.forEach(statement => {
@@ -124,7 +124,8 @@ function buildImportFragments(node: SpecTreeNode, imports: Map<string, string[]>
 
             const requiredImports = identifiers.filter(identifier => filteredKeys.includes(identifier));
             return importText.replace(/{ (.*?) }/, `{ ${requiredImports.join(',')} }`);
-        });
+        })
+        .join('\n');
 }
 
 function jsxToExpression(str: string): string {
