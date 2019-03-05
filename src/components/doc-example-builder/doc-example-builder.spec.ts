@@ -20,7 +20,9 @@ describe('DocExampleBuilder', () => {
             `${statements.join('\n')}`,
             jsx,
             '```'
-        ].join('\n\n');
+        ]
+            .filter(text => Boolean(text))
+            .join('\n\n');
     }
 
     it('should return undefined when `ParseSpecResult` tree is empty', async () => {
