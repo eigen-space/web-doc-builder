@@ -13,41 +13,36 @@ describe('SpecParser', () => {
     });
 
     it('should correct parse named imports', () => {
-        const ast = tsquery.ast(`import { Props, Component } from './component'`);
+        const importStatement = `import { Props, Component } from './component'`;
+        const ast = tsquery.ast(importStatement);
 
         const result = parse(ast);
 
-        const expectedImportsStorage = new Map<string, string>([
-            ['Props', `import { Props } from './component'`],
-            ['Component', `import { Component } from './component'`]
-        ]);
+        const expectedImportsStorage = new Map<string, string[]>([[importStatement, ['Props', 'Component']]]);
         expect(result.imports.size).toEqual(expectedImportsStorage.size);
-        expect(result.imports.get('Props')).toEqual(expectedImportsStorage.get('Props'));
-        expect(result.imports.get('Component')).toEqual(expectedImportsStorage.get('Component'));
+        expect(result.imports.get(importStatement)).toEqual(expectedImportsStorage.get(importStatement));
     });
 
     it('should correct parse namespace imports', () => {
-        const ast = tsquery.ast(`import * as Props from './component'`);
+        const importStatement = `import * as Props from './component'`;
+        const ast = tsquery.ast(importStatement);
 
         const result = parse(ast);
 
-        const expectedImportsStorage = new Map<string, string>([
-            ['Props', `import * as Props from './component'`]
-        ]);
+        const expectedImportsStorage = new Map<string, string[]>([[importStatement, ['Props']]]);
         expect(result.imports.size).toEqual(expectedImportsStorage.size);
-        expect(result.imports.get('Props')).toEqual(expectedImportsStorage.get('Props'));
+        expect(result.imports.get(importStatement)).toEqual(expectedImportsStorage.get(importStatement));
     });
 
     it('should correct parse default imports', () => {
-        const ast = tsquery.ast(`import Props from './component'`);
+        const importStatement = `import Props from './component'`;
+        const ast = tsquery.ast(importStatement);
 
         const result = parse(ast);
 
-        const expectedImportsStorage = new Map<string, string>([
-            ['Props', `import Props from './component'`]
-        ]);
+        const expectedImportsStorage = new Map<string, string[]>([[importStatement, ['Props']]]);
         expect(result.imports.size).toEqual(expectedImportsStorage.size);
-        expect(result.imports.get('Props')).toEqual(expectedImportsStorage.get('Props'));
+        expect(result.imports.get(importStatement)).toEqual(expectedImportsStorage.get(importStatement));
     });
 
     it('should dont parse spec body if there is no block `#documentation`', () => {

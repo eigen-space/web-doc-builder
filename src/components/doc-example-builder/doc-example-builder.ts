@@ -70,26 +70,12 @@ function getComponentExpressionMatcher(): RegExp {
     return new RegExp(`(${KeywordEnum.JSX}|${KeywordEnum.COMPONENT}) = `, 'g');
 }
 
-function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): string {
-    const importKeys = Array.from(imports.keys());
+function createExample(nodes: SpecTreeNode[], imports: Map<string, string[]>): string {
 
     const example: string[] = [];
 
     nodes.forEach(node => {
-        const filteredKeys: string[] = ['React'];
-        node.statements.forEach(statement => {
-            const keysInStatement = importKeys.filter(key => {
-                return Boolean(tsquery.query(statement, `${AstNodeType.IDENTIFIER}[text=${key}]`).length);
-            })
-                .filter(key => !filteredKeys.includes(key));
-
-            filteredKeys.push(...keysInStatement);
-        });
-
-        const importFragments = filteredKeys.map(key => {
-            const str = imports.get(key);
-            return str && str.trim();
-        }).join('\n');
+        const importFragments = buildImportFragments(node, imports);
         const statementTexts = node.statements.map(statement => statement.getFullText());
 
         // Get right-side part of component statement
@@ -109,6 +95,36 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string>): str
     });
 
     return example.join('\n\n');
+}
+
+function buildImportFragments(node: SpecTreeNode, imports: Map<string, string[]>): string[] {
+    const filteredKeys: string[] = ['React'];
+
+    node.statements.forEach(statement => {
+        imports.forEach((identifiers) => {
+            const keysInStatement = identifiers.filter(key => {
+                return Boolean(tsquery.query(statement, `${AstNodeType.IDENTIFIER}[text=${key}]`).length);
+            })
+                .filter(key => !filteredKeys.includes(key));
+
+            filteredKeys.push(...keysInStatement);
+        });
+    });
+
+    return Array.from(imports.keys())
+        .map(importText => {
+            // Incorrect behaviour. Array as value is by default
+            // istanbul ignore next
+            const identifiers = imports.get(importText) || [];
+            const isNamedImports = identifiers.length > 1;
+
+            if (!isNamedImports) {
+                return importText;
+            }
+
+            const requiredImports = identifiers.filter(identifier => filteredKeys.includes(identifier));
+            return importText.replace(/{ (.*?) }/, `{ ${requiredImports.join(',')} }`);
+        });
 }
 
 function jsxToExpression(str: string): string {

@@ -123,21 +123,17 @@ function getStatementsInsideNode(node: ts.Node): ts.Statement[] {
 }
 
 // Create map structure from import statements
-function parseImportStatements(data: ts.SourceFile): Map<string, string> {
-    const imports = new Map<string, string>();
+function parseImportStatements(data: ts.SourceFile): Map<string, string[]> {
+    const imports = new Map<string, string[]>();
 
     tsquery.query<ts.ImportDeclaration>(data, AstNodeType.IMPORT_DECLARATION)
         .forEach(node => {
-            const isNamedImports = Boolean(tsquery.query(node, AstNodeType.NAMED_IMPORTS).length);
-
+            const importText = node.getText();
+            imports.set(importText, []);
             tsquery.query(node, `${AstNodeType.IMPORT_CLAUSE} ${AstNodeType.IDENTIFIER}`)
                 .forEach(identifier => {
-                    let importText = node.getText();
-                    if (isNamedImports) {
-                        importText = importText.replace(/{ (.*?) }/, `{ ${identifier.getText()} }`);
-                    }
-
-                    imports.set(identifier.getText(), importText);
+                    // @ts-ignore
+                    imports.get(importText).push(identifier.getText());
                 });
         });
 
