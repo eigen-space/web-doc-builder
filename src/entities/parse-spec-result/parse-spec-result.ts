@@ -1,12 +1,12 @@
 import { SpecTreeNode } from '../spec-tree-node/spec-tree-node';
 
 export interface ParseSpecResultOptions {
-    imports?: Map<string, string>;
+    imports?: Map<string, string[]>;
     tree?: SpecTreeNode;
 }
 
 export class ParseSpecResult {
-    imports: Map<string, string>;
+    imports: Map<string, string[]>;
     tree: SpecTreeNode | null;
 
     constructor(data = {} as ParseSpecResultOptions) {

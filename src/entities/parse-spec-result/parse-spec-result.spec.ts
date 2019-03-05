@@ -6,7 +6,7 @@ describe('ParseSpecResult', () => {
 
     it('should correct create object', () => {
         const tree = new SpecTreeNode({ type: NodeType.DESCRIBE, title: 'parent' });
-        const imports = new Map<string, string>([['key', 'import']]);
+        const imports = new Map<string, string[]>([['import', ['key']]]);
         const specTreeNode = new ParseSpecResult({ imports, tree });
 
         expect(specTreeNode.imports).toEqual(imports);
