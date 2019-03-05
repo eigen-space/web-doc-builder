@@ -112,6 +112,12 @@ function buildImportFragments(node: SpecTreeNode, imports: Map<string, string[]>
     });
 
     return Array.from(imports.keys())
+        .filter(importText => {
+            // Incorrect behaviour. Array as value is by default
+            // istanbul ignore next
+            const identifiers = imports.get(importText) || [];
+            return identifiers.filter(identifier => filteredKeys.includes(identifier)).length;
+        })
         .map(importText => {
             // Incorrect behaviour. Array as value is by default
             // istanbul ignore next
