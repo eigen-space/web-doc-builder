@@ -91,7 +91,9 @@ function createExample(nodes: SpecTreeNode[], imports: Map<string, string[]>): s
             `${statementFragments}`,
             `${prettify(jsx)}`,
             '```'
-        ].join('\n\n'));
+        ]
+            .filter(text => Boolean(text))
+            .join('\n\n'));
     });
 
     return example.join('\n\n');
