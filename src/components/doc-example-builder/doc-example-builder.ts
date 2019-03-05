@@ -129,7 +129,7 @@ function buildImportFragments(node: SpecTreeNode, imports: Map<string, string[]>
             }
 
             const requiredImports = identifiers.filter(identifier => filteredKeys.includes(identifier));
-            return importText.replace(/{ (.*?) }/, `{ ${requiredImports.join(',')} }`);
+            return importText.replace(/{ (.*?) }/, `{ ${requiredImports.join(', ')} }`);
         })
         .join('\n');
 }
