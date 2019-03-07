@@ -25,15 +25,17 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@eigenspace/codestyle@1.1.12":
-  version "1.1.12"
-  resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.12.tgz#7813844674ba22d4ba5d58291f6e07d1141f4407"
-  integrity sha512-pRq0msF7mJ8bbo4s2KOQ6Cd6hUeLLWOPb21tchUMKjRllURioXr37BHgrREsw6wpLm7nwE3S49/eJoe9pwbtaQ==
+"@eigenspace/codestyle@latest":
+  version "1.1.15"
+  resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.15.tgz#90ec0f159086a824b5c6d59f306a878c6a2c1540"
+  integrity sha512-UBOJDUclsbPv8yFJ+eq82akJ4CRN56Dy5B1X57ieTHwIym5HmKOIVBHDEyBEtlmwX0hl7VsS3yoOJMdHumwA+Q==
 
-"@eigenspace/helper-scripts@1.0.8":
-  version "1.0.8"
-  resolved "https://artifacts.arrival.services:443/@eigenspace%2fhelper-scripts/-/helper-scripts-1.0.8.tgz#0d2b5b775bd0b41059bbd48015c22ca500ab31ee"
-  integrity sha512-uoRDRZQxCn2CviCvttLM5NKJ9xSqWWWzV3svh8GTLIq0xymrP8lplGJAsdZHVVbtcAGE7opk5eU6cqbU7M58dw==
+"@eigenspace/helper-scripts@1.0.44":
+  version "1.0.44"
+  resolved "https://artifacts.arrival.services:443/@eigenspace%2fhelper-scripts/-/helper-scripts-1.0.44.tgz#0662943d36a0302d3036b4e098309d2b67afe6fb"
+  integrity sha512-C6IrWQ4sYOxnpi6zxE26kycX4BgNt47y6tTwvTAqqWVMTQOGbal0KZE5+5XBpGRona6gfdy+TIYvJxLBs1jY/g==
+  dependencies:
+    minimist "1.2.0"
 
 "@iamstarkov/listr-update-renderer@0.4.1":
   version "0.4.1"
@@ -3734,15 +3736,15 @@ minimist@0.0.8:
   resolved "https://artifacts.arrival.services:443/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
   integrity sha1-hX/Kv8M5fSYluCKCYuhqp6ARsF0=
 
+minimist@1.2.0, minimist@^1.1.1, minimist@^1.2.0:
+  version "1.2.0"
+  resolved "https://artifacts.arrival.services:443/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
+  integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
+
 minimist@^0.1.0:
   version "0.1.0"
   resolved "https://artifacts.arrival.services:443/minimist/-/minimist-0.1.0.tgz#99df657a52574c21c9057497df742790b2b4c0de"
   integrity sha1-md9lelJXTCHJBXSX33QnkLK0wN4=
-
-minimist@^1.1.1, minimist@^1.2.0:
-  version "1.2.0"
-  resolved "https://artifacts.arrival.services:443/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
-  integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
 
 minimist@~0.0.1:
   version "0.0.10"
