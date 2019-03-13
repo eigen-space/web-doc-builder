@@ -25,7 +25,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@eigenspace/codestyle@1.1.17":
+"@eigenspace/codestyle@latest":
   version "1.1.17"
   resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.17.tgz#f555f701c98916a25dfd49cd3ff80fcf207749b1"
   integrity sha512-8CDjijYVoBAu6CqixjdDhqntwA4UB7+86WBM0xB/wc1L12azZlJli8JZr+5UuTbZFgh8GtQ0KQfG/R1c9EVYiQ==
