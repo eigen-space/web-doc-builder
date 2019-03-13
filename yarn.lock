@@ -26,9 +26,9 @@
     regenerator-runtime "^0.12.0"
 
 "@eigenspace/codestyle@latest":
-  version "1.1.15"
-  resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.15.tgz#90ec0f159086a824b5c6d59f306a878c6a2c1540"
-  integrity sha512-UBOJDUclsbPv8yFJ+eq82akJ4CRN56Dy5B1X57ieTHwIym5HmKOIVBHDEyBEtlmwX0hl7VsS3yoOJMdHumwA+Q==
+  version "1.1.17"
+  resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.17.tgz#f555f701c98916a25dfd49cd3ff80fcf207749b1"
+  integrity sha512-8CDjijYVoBAu6CqixjdDhqntwA4UB7+86WBM0xB/wc1L12azZlJli8JZr+5UuTbZFgh8GtQ0KQfG/R1c9EVYiQ==
 
 "@eigenspace/helper-scripts@1.0.44":
   version "1.0.44"
