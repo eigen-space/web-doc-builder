@@ -4,7 +4,7 @@
     "private": false,
     "scripts": {
         "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production",
-        "lint": "tslint 'src/**/*.{ts,tsx}'",
+        "lint": "tslint --project tsconfig.json",
         "test": "jest --coverage",
         "test:ci": "jest --ci --coverage",
         "tsc": "tsc",
