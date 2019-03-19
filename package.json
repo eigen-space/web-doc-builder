@@ -11,7 +11,8 @@
         "tsc": "tsc",
         "deploy:publish": "node node_modules/@eigenspace/helper-scripts/scripts/ci/publish.js",
         "hooks:pre-push": "yarn lint && yarn test",
-        "script:update-deps": "node node_modules/@eigenspace/helper-scripts/scripts/project/update-deps.js"
+        "script:update-deps-local": "node node_modules/@eigenspace/helper-scripts/scripts/project/update-deps.js",
+        "script:update-deps-remote": "npx -p @eigenspace/helper-scripts update-deps"
     },
     "husky": {
         "hooks": {
@@ -28,7 +29,7 @@
     },
     "devDependencies": {
         "@eigenspace/codestyle": "latest",
-        "@eigenspace/helper-scripts": "1.0.48",
+        "@eigenspace/helper-scripts": "1.0.54",
         "@types/jest": "22.2.2",
         "@types/node": "11.9.5",
         "clean-webpack-plugin": "1.0.1",
