@@ -14,14 +14,16 @@ $ yarn add --dev @arrival/doc-builder
 ```
 
 # How to use
-To generate the documentation, just call the method and pass  as parameter the directory where the specification
-files are located.
-```node
-    const builder = require('@arrival/doc-builder');
-    
-    const dir = 'src/components';
-    builder.generate(dir);
-```
+There are 2 methods to generate documentation
+1. Just call the method and pass as parameter the directories where the specification
+   files are located or files, or both directories and files together.
+    ```node
+        new DocGenerator().run(['src', 'src/*.spec.tsx']);
+    ```
+2. Run script from index.js with params
+    ```node
+        node node_modules/@arrival/doc-builder/index.js --src src src/spec.tsx
+    ```
 The generated example files will be located next to the specification files.
 
 # Dependencies
