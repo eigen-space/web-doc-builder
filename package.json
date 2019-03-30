@@ -1,6 +1,6 @@
 {
     "name": "@arrival/doc-builder",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "private": false,
     "scripts": {
         "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production && yarn bundle-dts",
