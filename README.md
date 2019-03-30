@@ -18,9 +18,9 @@ There are 2 methods to generate documentation
 1. Just call the method and pass as parameter the directories where the specification
    files are located or files, or both directories and files together.
     ```node
-        new DocGenerator().run(['src', 'src/*.spec.tsx']);
+        new DocGenerator().run(['src', 'src/spec.tsx']);
     ```
-2. Run script from index.js with params
+2. Run script index.js with params
     ```node
         node node_modules/@arrival/doc-builder/index.js --src src src/spec.tsx
     ```
