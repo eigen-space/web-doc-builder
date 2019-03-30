@@ -1,15 +1,16 @@
 import { ParseSpecResult } from '../../entities/parse-spec-result/parse-spec-result';
-import { build} from './doc-example-builder';
+import { DocExampleBuilder } from './doc-example-builder';
 import { tsquery } from '@phenomnomnominal/tsquery';
-import { parse } from '../spec-parser/spec-parser';
+import { SpecParser } from '../spec-parser/spec-parser';
 
 describe('DocExampleBuilder', () => {
+    const builder = new DocExampleBuilder();
 
     function getExample(data: string): string | undefined {
         const ast = tsquery.ast(data, 'example.tsx');
-        const result = parse(ast);
+        const result = new SpecParser().run(ast);
 
-        return build(result);
+        return builder.run(result);
     }
 
     function getExpectedResult(title: string, imports: string[], statements: string[], jsx: string): string {
@@ -27,7 +28,7 @@ describe('DocExampleBuilder', () => {
 
     it('should return undefined when `ParseSpecResult` tree is empty', async () => {
         const result = new ParseSpecResult();
-        expect(build(result)).not.toBeDefined();
+        expect(builder.run(result)).not.toBeDefined();
     });
 
     it('should correct build example', () => {

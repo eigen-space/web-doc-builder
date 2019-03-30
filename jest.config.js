@@ -2,8 +2,9 @@ module.exports = {
     clearMocks: true,
     collectCoverageFrom: [
         'src/**/*.{ts}',
-        // Testing does not make sense
-        '!src/index.ts'
+        // Testing does not run sense
+        '!src/index.ts',
+        '!src/app/components/doc-generator/doc-generator.ts'
     ],
     coveragePathIgnorePatterns: [
         '.*\\.d\\.ts'
