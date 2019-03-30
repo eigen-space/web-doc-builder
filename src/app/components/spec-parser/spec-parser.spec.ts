@@ -1,12 +1,13 @@
-import { parse } from './spec-parser';
 import { tsquery } from '@phenomnomnominal/tsquery';
 import { NodeType } from '../../enums/node.enum';
+import { SpecParser } from './spec-parser';
 
 describe('SpecParser', () => {
+    const parser = new SpecParser();
 
     it('should return empty `ParseSpecResult` when input data empty', () => {
         const data = tsquery.ast('');
-        const result = parse(data);
+        const result = parser.run(data);
 
         expect(result.imports).toEqual(new Map());
         expect(result.tree).toBeNull();
@@ -16,7 +17,7 @@ describe('SpecParser', () => {
         const importStatement = `import { Props, Component } from './component'`;
         const ast = tsquery.ast(importStatement);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         const expectedImportsStorage = new Map<string, string[]>([[importStatement, ['Props', 'Component']]]);
         expect(result.imports.size).toEqual(expectedImportsStorage.size);
@@ -27,7 +28,7 @@ describe('SpecParser', () => {
         const importStatement = `import * as Props from './component'`;
         const ast = tsquery.ast(importStatement);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         const expectedImportsStorage = new Map<string, string[]>([[importStatement, ['Props']]]);
         expect(result.imports.size).toEqual(expectedImportsStorage.size);
@@ -38,7 +39,7 @@ describe('SpecParser', () => {
         const importStatement = `import Props from './component'`;
         const ast = tsquery.ast(importStatement);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         const expectedImportsStorage = new Map<string, string[]>([[importStatement, ['Props']]]);
         expect(result.imports.size).toEqual(expectedImportsStorage.size);
@@ -53,7 +54,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).toBeNull();
     });
@@ -66,7 +67,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.type).toEqual(NodeType.DESCRIBE);
@@ -87,7 +88,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -105,7 +106,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -123,7 +124,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -141,7 +142,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -159,7 +160,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         expect(result.tree && result.tree.children[0].statements.length).toEqual(1);
@@ -181,7 +182,7 @@ describe('SpecParser', () => {
         `;
         const ast = tsquery.ast(data);
 
-        const result = parse(ast);
+        const result = parser.run(ast);
 
         expect(result.tree).not.toBeNull();
         const documentationBlock = result.tree && result.tree.children[0];

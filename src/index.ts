@@ -1,42 +1,6 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { tsquery } from '@phenomnomnominal/tsquery';
-import { parse } from './components/spec-parser/spec-parser';
-import { build } from './components/doc-example-builder/doc-example-builder';
-import { CommonScripts } from '@eigenspace/helper-scripts';
+import { ArgsParser } from './app/utils/args-parser';
+import { DocGenerator } from './app/components/doc-generator/doc-generator';
 
-export function generate(dirPath: string): void {
-    CommonScripts.walkThrough(
-        dirPath,
-        (currentDir: string, file: string) => {
-            const filePath = path.resolve(currentDir, file);
-            if (!fs.statSync(filePath).isFile() || !file.match(/.spec.tsx$/g)) {
-                return;
-            }
+const params = ArgsParser.get(process.argv.slice(2));
 
-            fs.readFile(filePath, 'utf8', (readError: NodeJS.ErrnoException, data: string) => {
-                if (readError) {
-                    throw readError;
-                }
-
-                const example = makeDoc(file, data);
-
-                if (example != null) {
-                    const docName = `${file.split('.')[0]}.md`;
-                    const savedFilePath = path.resolve(currentDir, docName);
-
-                    fs.writeFile(savedFilePath, example, writeError => {
-                        const status = writeError ? 'Failure' : 'Success';
-                        console.log(`${status}: ${savedFilePath}`);
-                    });
-                }
-            });
-        }
-    );
-}
-
-function makeDoc(name: string, fileData: string): string | undefined {
-    const ast = tsquery.ast(fileData, name);
-    const result = parse(ast);
-    return build(result);
-}
+new DocGenerator().run(params.get('src'));
