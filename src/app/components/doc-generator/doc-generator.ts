@@ -37,7 +37,7 @@ export class DocGenerator {
 
             if (example != null) {
                 const docName = `${file.split('.')[0]}.md`;
-                const savedFilePath = path.resolve(path.dirname(file), docName);
+                const savedFilePath = path.resolve(path.dirname(filePath), docName);
 
                 fs.writeFile(savedFilePath, example, writeError => {
                     const status = writeError ? 'Failure' : 'Success';
