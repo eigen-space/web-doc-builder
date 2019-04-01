@@ -24,10 +24,7 @@ describe('SpecTreeNode', () => {
     });
 
     it('should corect create object only with required parameters', () => {
-        const options = {
-            type: NodeType.DESCRIBE,
-            title: 'title'
-        };
+        const options = { type: NodeType.DESCRIBE, title: 'title' };
         const specTreeNode = new SpecTreeNode(options);
 
         expect(specTreeNode.parent).not.toBeDefined();
