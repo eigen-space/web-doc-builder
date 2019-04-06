@@ -5,7 +5,10 @@ import { ParseSpecResult } from './parse-spec-result';
 describe('ParseSpecResult', () => {
 
     it('should correct create object', () => {
-        const tree = new SpecTreeNode({ type: NodeType.DESCRIBE, title: 'parent' });
+        const tree = new SpecTreeNode({
+            type: NodeType.DESCRIBE,
+            title: 'parent'
+        });
         const imports = new Map<string, string[]>([['import', ['key']]]);
         const specTreeNode = new ParseSpecResult({ imports, tree });
 
