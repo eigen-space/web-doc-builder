@@ -5,8 +5,14 @@ import * as ts from 'typescript';
 describe('SpecTreeNode', () => {
 
     it('should correct create object', () => {
-        const parent = new SpecTreeNode({ type: NodeType.DESCRIBE, title: 'parent' });
-        const children = [new SpecTreeNode({ type: NodeType.IT, title: 'child' })];
+        const parent = new SpecTreeNode({
+            type: NodeType.DESCRIBE,
+            title: 'parent'
+        });
+        const children = [new SpecTreeNode({
+            type: NodeType.IT,
+            title: 'child'
+        })];
         const options = {
             type: NodeType.DESCRIBE,
             title: 'title',
@@ -24,7 +30,10 @@ describe('SpecTreeNode', () => {
     });
 
     it('should corect create object only with required parameters', () => {
-        const options = { type: NodeType.DESCRIBE, title: 'title' };
+        const options = {
+            type: NodeType.DESCRIBE,
+            title: 'title'
+        };
         const specTreeNode = new SpecTreeNode(options);
 
         expect(specTreeNode.parent).not.toBeDefined();
