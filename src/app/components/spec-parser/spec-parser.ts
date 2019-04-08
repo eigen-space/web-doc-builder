@@ -112,11 +112,9 @@ export class SpecParser {
             return hasDeclaration || hasExpression;
         });
 
-        let filteredStatements = [];
+        let filteredStatements = copyContainerStatement.reverse();
         if (reversedIndex !== -1) {
             filteredStatements = copyContainerStatement.slice(reversedIndex).reverse();
-        } else {
-            filteredStatements = copyContainerStatement.reverse();
         }
 
         return new SpecTreeNode({ type, title, statements: filteredStatements });
