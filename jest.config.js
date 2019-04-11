@@ -10,7 +10,7 @@ module.exports = {
         '.*\\.d\\.ts'
     ],
     testMatch: [
-        '<rootDir>/src/**/?(*.)(spec).(ts|tsx)'
+        '<rootDir>/src/**/*.spec.(ts|tsx)'
     ],
     // This configuration is used to defeat the problem:
     //  jest-haste-map: @providesModule naming collision:
@@ -41,7 +41,7 @@ module.exports = {
     ],
     globals: {
         'ts-jest': {
-            tsConfig: 'src/tsconfig.spec.json'
+            tsConfig: 'tsconfig.spec.json'
         }
     },
     coverageThreshold: {
