@@ -1,4 +1,5 @@
-# About
+# About [![Build Status](http://ci.smekalka.com/buildStatus/icon?job=ams.doc-builder-p)](http://ci.smekalka.com/view/AMS/job/ams.doc-builder-p/)
+
 Doc-builder is a tool for generating documentation on the specification of ui component. The specification must be
 described by [some rules](https://www.notion.so/arrivalms/Doc-generation-d59844854d0d4b26a67bfc653a50cb36). The result of 
 the generation is a markdown file containing examples of using the components.
@@ -26,10 +27,24 @@ There are 2 methods to generate documentation
     ```
 The generated example files will be located next to the specification files.
 
-# Dependencies
+# Why do we have that dependencies?
 
-[@phenomnomnominal/tsquery](https://github.com/phenomnomnominal/tsquery) helps us parse specification.
+* `@phenomnomnominal/tsquery` - helps us parse specification.
 
-[typescript](https://github.com/Microsoft/TypeScript) types entities
+# Why do we have that dev dependencies?
 
-[@eigenspace/helper-scripts](https://github.com/eigen-space/helper-scripts) helps us search files in source directory 
+* `@eigenspace/codestyle` - includes tslint rules, config for typescript.
+* `@eigenspace/helper-scripts` - common scripts for dev. environment.
+* `@types/*` - contains type definitions for specific library.
+* `jest` - testing framework to write unit specs (including snapshots).
+* `ts-jest` - it lets you use Jest to test projects written in TypeScript.
+* `ts-loader` - it is used to load typescript code with webpack. 
+* `tslint` - it checks TypeScript code for readability, maintainability, and functionality errors.
+* `typescript` - is a superset of JavaScript that have static type-checking and ECMAScript features.
+See `webpack.config.js`.
+* `webpack` - it create app bundle for dev mode and production. 
+* `copy-webpack-plugin` - used for copy package.json in package bundle.
+* `clean-webpack-plugin` - used for clean bundle before run building.
+* `husky` - used for configure git hooks.
+* `lint-staged` - used for configure linters against staged git files.
+* `webpack-cli` - command line interface dor webpack.
