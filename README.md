@@ -1,4 +1,4 @@
-# About [![Build Status](http://ci.smekalka.com/buildStatus/icon?job=ams.doc-builder-p)](http://ci.smekalka.com/view/AMS/job/ams.doc-builder-p/)
+# About [![Build Status](http://ci.smekalka.com/buildStatus/icon?job=ams.doc-builder)](http://ci.smekalka.com/view/AMS/job/ams.doc-builder/)
 
 Doc-builder is a tool for generating documentation on the specification of ui component. The specification must be
 described by [some rules](https://www.notion.so/arrivalms/Doc-generation-d59844854d0d4b26a67bfc653a50cb36). The result of 
