@@ -146,10 +146,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@eigenspace/codestyle@1.1.50":
-  version "1.1.50"
-  resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.50.tgz#4569e97e10dc14c741048ff2a5fe05e3ea5fe291"
-  integrity sha512-Q8vHu8fKzNSraoEImYgsEzUV3jY6dEl3Z6uXc6Uon4KNxyFEL5DiSHLna3Gns8fYOdsQT7Qlg4RoZPLQy+fy9Q==
+"@eigenspace/codestyle@latest":
+  version "1.1.51"
+  resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.51.tgz#f41ff77b6259e92a30c04e63f68f9d83900ef8ec"
+  integrity sha512-aEl6IZvRgEI2vocqvm9jASKd+Woj7u+ul0EWSR9Kyt4OvJ8BrhwlDXqK9c4awbLyOZJg7nAxF6ZhHq0qvZS5aw==
 
 "@eigenspace/helper-scripts@1.0.61":
   version "1.0.61"
