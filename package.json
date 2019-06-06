@@ -29,11 +29,11 @@
         ]
     },
     "dependencies": {
-        "@phenomnomnominal/tsquery": "3.0.0"
+        "@phenomnomnominal/tsquery": "3.0.0",
+        "@eigenspace/helper-scripts": "1.0.74"
     },
     "devDependencies": {
         "@eigenspace/codestyle": "latest",
-        "@eigenspace/helper-scripts": "1.0.61",
         "@types/jest": "22.2.2",
         "@types/node": "11.9.5",
         "clean-webpack-plugin": "1.0.1",

@@ -151,10 +151,10 @@
   resolved "https://artifacts.arrival.services:443/@eigenspace%2fcodestyle/-/codestyle-1.1.51.tgz#f41ff77b6259e92a30c04e63f68f9d83900ef8ec"
   integrity sha512-aEl6IZvRgEI2vocqvm9jASKd+Woj7u+ul0EWSR9Kyt4OvJ8BrhwlDXqK9c4awbLyOZJg7nAxF6ZhHq0qvZS5aw==
 
-"@eigenspace/helper-scripts@1.0.61":
-  version "1.0.61"
-  resolved "https://artifacts.arrival.services:443/@eigenspace%2fhelper-scripts/-/helper-scripts-1.0.61.tgz#9bc5efd0108b975366d93ec6606bc9cdb0d34d6a"
-  integrity sha512-qo+AXi6pl103xjCa3Zq6FrdFRcmd8MN1wSpWoiFqJdKA1jUtUK0NXLYAt8dI5M7Dbs4mkki33+YHVXRval42NQ==
+"@eigenspace/helper-scripts@1.0.74":
+  version "1.0.74"
+  resolved "https://artifacts.arrival.services:443/@eigenspace%2fhelper-scripts/-/helper-scripts-1.0.74.tgz#c91bf97e2d983cc770b4ffae589d8907e5c03da5"
+  integrity sha512-qT1W5kI4CXBCX51VPO58czQa2sl6c2N9HcW2l0bsDedYkvXGZq6Nk4Pl1qJjdlCHI5mSbrkw0YvRmWIe+D2roQ==
   dependencies:
     minimist "1.2.0"
 
