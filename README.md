@@ -30,11 +30,11 @@ The generated example files will be located next to the specification files.
 # Why do we have that dependencies?
 
 * `@phenomnomnominal/tsquery` - helps us parse specification.
+* `@eigenspace/helper-scripts` - common scripts for dev. environment.
 
 # Why do we have that dev dependencies?
 
 * `@eigenspace/codestyle` - includes tslint rules, config for typescript.
-* `@eigenspace/helper-scripts` - common scripts for dev. environment.
 * `@types/*` - contains type definitions for specific library.
 * `jest` - testing framework to write unit specs (including snapshots).
 * `ts-jest` - it lets you use Jest to test projects written in TypeScript.

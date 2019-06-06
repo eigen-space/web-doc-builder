@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { tsquery } from '@phenomnomnominal/tsquery';
-import { CommonScripts } from '@eigenspace/helper-scripts';
+import { walkThrough } from '@eigenspace/helper-scripts';
 import { DocExampleBuilder } from '../doc-example-builder/doc-example-builder';
 import { SpecParser } from '../spec-parser/spec-parser';
 
@@ -14,7 +14,7 @@ export class DocGenerator {
     }
 
     private processDir(dirPath: string): void {
-        CommonScripts.walkThrough(
+        walkThrough(
             dirPath,
             (currentDir: string, file: string) => {
                 this.processFile(path.resolve(currentDir, file));
