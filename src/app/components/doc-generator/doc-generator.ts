@@ -41,6 +41,7 @@ export class DocGenerator {
 
                 fs.writeFile(savedFilePath, example, writeError => {
                     const status = writeError ? 'Failure' : 'Success';
+                    // eslint-disable-next-line no-console
                     console.log(`${status}: ${savedFilePath}`);
                 });
             }

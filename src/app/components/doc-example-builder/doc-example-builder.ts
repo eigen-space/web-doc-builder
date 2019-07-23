@@ -108,7 +108,8 @@ export class DocExampleBuilder {
         node.statements.forEach(statement => {
             imports.forEach((identifiers) => {
                 const keysInStatement = identifiers.filter(key => {
-                    return Boolean(tsquery.query(statement, `${AstNodeType.IDENTIFIER}[text=${key}]`).length);
+                    const selector = `${AstNodeType.IDENTIFIER}[text=${key}]`;
+                    return Boolean(tsquery.query(statement, selector).length);
                 })
                     .filter(key => !filteredKeys.includes(key));
 

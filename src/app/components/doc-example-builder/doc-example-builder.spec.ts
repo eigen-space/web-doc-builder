@@ -33,7 +33,7 @@ describe('DocExampleBuilder', () => {
 
     it('should correct build example', () => {
         const statements = ['function a() {}', 'const component = <Component/>;'];
-        const imports = `import React from 'react';`;
+        const imports = 'import React from \'react\';';
         const data = `
             ${imports}
             describe('Component', () => {
@@ -67,14 +67,14 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult(`subtitle`, [], [], `<Jsx/>`);
+        const expected = getExpectedResult('subtitle', [], [], '<Jsx/>');
 
         expect(example).toEqual(expected);
     });
 
     it('should filter duplicate import', () => {
         const statements = ['const x = React.get();', 'const b = React.get();', 'component = <Jsx/>'];
-        const imports = `import React from './React';`;
+        const imports = 'import React from \'./React\';';
         const data = `
             ${imports}
             describe('Component', () => {
@@ -90,7 +90,7 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult(`subtitle`, [imports], statements.slice(0, 2), `<Jsx/>`);
+        const expected = getExpectedResult('subtitle', [imports], statements.slice(0, 2), '<Jsx/>');
 
         expect(example).toEqual(expected);
     });
@@ -98,12 +98,12 @@ describe('DocExampleBuilder', () => {
     it('should process multiline component with brackets correctly', () => {
         // noinspection HtmlUnknownAttribute
         const component = [
-                `<CardsContainer {...props}>`,
-                `    <Card description='Mercedes' fullHeight={true} theme={theme}/>`,
-                `        {children}`,
-                `    <Card description='Ferrari' theme={theme}/>`,
-                `</CardsContainer>`
-            ].join('\n');
+            '<CardsContainer {...props}>',
+            '    <Card description=\'Mercedes\' fullHeight={true} theme={theme}/>',
+            '        {children}',
+            '    <Card description=\'Ferrari\' theme={theme}/>',
+            '</CardsContainer>'
+        ].join('\n');
 
         const data = `
             describe('Component', () => {
@@ -119,7 +119,7 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult(`subtitle`, [], [], component);
+        const expected = getExpectedResult('subtitle', [], [], component);
 
         expect(example).toEqual(expected);
     });
@@ -127,11 +127,11 @@ describe('DocExampleBuilder', () => {
     it('should process multiline component without brackets correctly', () => {
         // noinspection HtmlUnknownAttribute
         const component = [
-            `<CardsContainer {...props}>`,
-            `    <Card description='Mercedes' fullHeight={true} theme={theme}/>`,
-            `        {children}`,
-            `    <Card description='Ferrari' theme={theme}/>`,
-            `</CardsContainer>`
+            '<CardsContainer {...props}>',
+            '    <Card description=\'Mercedes\' fullHeight={true} theme={theme}/>',
+            '        {children}',
+            '    <Card description=\'Ferrari\' theme={theme}/>',
+            '</CardsContainer>'
         ].join('\n');
 
         const data = `
@@ -147,14 +147,14 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expected = getExpectedResult(`subtitle`, [], [], component);
+        const expected = getExpectedResult('subtitle', [], [], component);
 
         expect(example).toEqual(expected);
     });
 
     it('should filter correct processing named imports', () => {
         const statements = ['const x = React.get();', 'const b = renderer.get();', 'component = <Jsx/>'];
-        const imports = `import { React, renderer } from './React';`;
+        const imports = 'import { React, renderer } from \'./React\';';
         const data = `
             ${imports}
             describe('Component', () => {
@@ -170,12 +170,12 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expectedImports = `import { React, renderer } from './React';`;
+        const expectedImports = 'import { React, renderer } from \'./React\';';
         const expected = getExpectedResult(
-            `subtitle`,
+            'subtitle',
             [expectedImports],
             statements.slice(0, 2),
-            `<Jsx/>`
+            '<Jsx/>'
         );
 
         expect(example).toEqual(expected);
@@ -183,7 +183,7 @@ describe('DocExampleBuilder', () => {
 
     it('should filter unused import identifiers from imports', () => {
         const statements = ['const x = React.get();', 'const b = React.get();', 'component = <Jsx/>'];
-        const imports = `import { React, renderer } from './React';`;
+        const imports = 'import { React, renderer } from \'./React\';';
         const data = `
             ${imports}
             describe('Component', () => {
@@ -199,12 +199,12 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expectedImports = `import { React } from './React';`;
+        const expectedImports = 'import { React } from \'./React\';';
         const expected = getExpectedResult(
-            `subtitle`,
+            'subtitle',
             [expectedImports],
             statements.slice(0, 2),
-            `<Jsx/>`
+            '<Jsx/>'
         );
 
         expect(example).toEqual(expected);
@@ -213,8 +213,8 @@ describe('DocExampleBuilder', () => {
     it('should filter unused import statements', () => {
         const statements = ['const x = React.get();', 'component = <Jsx/>'];
         const imports = [
-            `import { React } from './React';`,
-            `import { NotReact } from './not-react';`
+            'import { React } from \'./React\';',
+            'import { NotReact } from \'./not-react\';'
         ];
         const data = `
             ${imports.join('\n')}
@@ -230,12 +230,12 @@ describe('DocExampleBuilder', () => {
 
         const example = getExample(data);
 
-        const expectedImports = `import { React } from './React';`;
+        const expectedImports = 'import { React } from \'./React\';';
         const expected = getExpectedResult(
-            `subtitle`,
+            'subtitle',
             [expectedImports],
             statements.slice(0, 1),
-            `<Jsx/>`
+            '<Jsx/>'
         );
 
         expect(example).toEqual(expected);

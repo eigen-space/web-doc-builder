@@ -14,7 +14,7 @@ describe('SpecParser', () => {
     });
 
     it('should correct parse named imports', () => {
-        const importStatement = `import { Props, Component } from './component'`;
+        const importStatement = 'import { Props, Component } from \'./component\'';
         const ast = tsquery.ast(importStatement);
 
         const result = parser.run(ast);
@@ -25,7 +25,7 @@ describe('SpecParser', () => {
     });
 
     it('should correct parse namespace imports', () => {
-        const importStatement = `import * as Props from './component'`;
+        const importStatement = 'import * as Props from \'./component\'';
         const ast = tsquery.ast(importStatement);
 
         const result = parser.run(ast);
@@ -36,7 +36,7 @@ describe('SpecParser', () => {
     });
 
     it('should correct parse default imports', () => {
-        const importStatement = `import Props from './component'`;
+        const importStatement = 'import Props from \'./component\'';
         const ast = tsquery.ast(importStatement);
 
         const result = parser.run(ast);
