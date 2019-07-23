@@ -19,10 +19,11 @@ export class SpecParser {
         const selector = `${AstNodeType.CALL_EXPRESSION} ${AstNodeType.IDENTIFIER}[text=${NodeType.DESCRIBE}]`;
         const documentationNode = tsquery.query<ts.Identifier>(data, selector)
             .map(node => node.parent as ts.CallExpression)
-            .filter(node => node.arguments[0].getText().includes(`#documentation`))[0];
+            .filter(node => node.arguments[0].getText().includes('#documentation'))[0];
 
         if (!documentationNode) {
-            console.log(`SKIPPED ${data.fileName}: dont found ${NodeType.DESCRIBE} with "#documentation" title`);
+            // eslint-disable-next-line no-console
+            console.info(`SKIPPED ${data.fileName}: dont found ${NodeType.DESCRIBE} with "#documentation" title`);
             return;
         }
 
@@ -34,9 +35,8 @@ export class SpecParser {
     }
 
     private searchChildren(node: ts.Node, parent: SpecTreeNode): SpecTreeNode[] {
-        return this.getStatementsInsideNode(node).filter(statement => {
-            return ts.isExpressionStatement(statement) && this.isSpecTreeNodeTyped(statement.expression);
-        })
+        return this.getStatementsInsideNode(node)
+            .filter(statement => ts.isExpressionStatement(statement) && this.isSpecTreeNodeTyped(statement.expression))
             .map(statement => (statement as ts.ExpressionStatement).expression as ts.CallExpression)
             .map(child => {
                 const childSpecNode = this.buildNode(child);
@@ -84,11 +84,9 @@ export class SpecParser {
 
         // Collect required statements
         const statements = this.getStatementsInsideNode(node)
-            .filter(statement => {
-                return ts.isExpressionStatement(statement) && ts.isBinaryExpression(statement.expression)
+            .filter(statement => ts.isExpressionStatement(statement) && ts.isBinaryExpression(statement.expression)
                     || ts.isVariableStatement(statement)
-                    || ts.isFunctionDeclaration(statement);
-            });
+                    || ts.isFunctionDeclaration(statement));
 
         const copyContainerStatement = [...statements];
 
