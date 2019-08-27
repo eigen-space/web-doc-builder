@@ -5,12 +5,14 @@ import { walkThrough } from '@eigenspace/helper-scripts';
 import { DocExampleBuilder } from '../doc-example-builder/doc-example-builder';
 import { SpecParser } from '../spec-parser/spec-parser';
 
+export type Paths = string[];
+
 export class DocGenerator {
     private builder = new DocExampleBuilder();
     private parser = new SpecParser();
 
-    run(src = ['src/components']): void {
-        src.forEach(param => fs.statSync(param).isFile() ? this.processFile(param) : this.processDir(param));
+    run(paths: Paths = ['src/components']): void {
+        paths.forEach(param => fs.statSync(param).isFile() ? this.processFile(param) : this.processDir(param));
     }
 
     private processDir(dirPath: string): void {
