@@ -1,6 +1,6 @@
 {
     "name": "@arrival/doc-builder",
-    "version": "0.0.19",
+    "version": "0.1.1",
     "private": false,
     "scripts": {
         "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production && yarn bundle-dts",
@@ -30,6 +30,7 @@
         ]
     },
     "dependencies": {
+        "@eigenspace/argument-parser": "1.0.3",
         "@eigenspace/helper-scripts": "1.0.74",
         "@phenomnomnominal/tsquery": "3.0.0"
     },

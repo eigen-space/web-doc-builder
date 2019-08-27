@@ -1,1 +1,1 @@
-module.exports = require('@eigenspace/codestyle/configs/eslint/eslint.base.js');
+module.exports = require('@eigenspace/codestyle/packages/eslint/base');

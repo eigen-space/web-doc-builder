@@ -1,6 +1,9 @@
-import { ArgsParser } from './app/utils/args-parser';
-import { DocGenerator } from './app/components/doc-generator/doc-generator';
+import { DocGenerator, Paths } from './app/components/doc-generator/doc-generator';
+import { ArgumentParser } from '@eigenspace/argument-parser';
 
-const params = ArgsParser.get(process.argv.slice(2));
+const parser = new ArgumentParser();
 
-new DocGenerator().run(params.get('src') || undefined);
+const params = parser.get(process.argv.slice(2));
+const srcParam = params.get('src') as Paths | undefined;
+
+new DocGenerator().run(srcParam);
