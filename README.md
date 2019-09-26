@@ -23,14 +23,15 @@ There are 2 methods to generate documentation
     ```
 2. Run script index.js with params
     ```node
-        node node_modules/@arrival/doc-builder/index.js --src src src/spec.tsx
+        node node_modules/@arrival/doc-builder/index.js --src[]=src,src/spec.tsx
     ```
 The generated example files will be located next to the specification files.
 
 # Why do we have that dependencies?
 
 * `@phenomnomnominal/tsquery` - helps us parse specification.
-* `@eigenspace/helper-scripts` - common scripts for dev. environment.
+* `@eigenspace/argument-parser` - used for parsing arguments when script running.
+* `@eigenspace/helper-scripts` - common scripts for dev environment.
 
 # Why do we have that dev dependencies?
 
