@@ -1,7 +1,10 @@
 {
-    "name": "@arrival/doc-builder",
-    "version": "0.1.1",
+    "name": "@cybernated/doc-builder",
+    "version": "1.0.0",
     "private": false,
+    "publishConfig": {
+        "registry": "https://artifacts.core.arrival.co/repository/ce-frontend/"
+    },
     "scripts": {
         "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production && yarn bundle-dts",
         "bundle-dts": "node node_modules/@eigenspace/helper-scripts/scripts/project/bundle-dts.js",
@@ -35,7 +38,7 @@
         "@phenomnomnominal/tsquery": "3.0.0"
     },
     "devDependencies": {
-        "@eigenspace/codestyle": "latest",
+        "@eigenspace/codestyle": "1.1.64",
         "@types/jest": "22.2.2",
         "@types/node": "11.9.5",
         "clean-webpack-plugin": "1.0.1",
