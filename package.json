@@ -34,7 +34,7 @@
     },
     "dependencies": {
         "@eigenspace/argument-parser": "1.0.3",
-        "@eigenspace/helper-scripts": "1.0.74",
+        "@eigenspace/helper-scripts": "2.0.3-core",
         "@phenomnomnominal/tsquery": "3.0.0"
     },
     "devDependencies": {

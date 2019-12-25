@@ -146,6 +146,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@eigenspace/argument-parser@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@eigenspace/argument-parser/-/argument-parser-1.0.2.tgz#dbb21937d1b88795398ff7d1d26d0f8742a0999b"
+  integrity sha512-LgHE7X/6F8zTsPNt62CvJSxBo/grXKpX6+4A9iVihkLdIvFJ8KVP6vJ1ekZS6Quov6dEBB5aKSN5Z08yTaBafg==
+
 "@eigenspace/argument-parser@1.0.3":
   version "1.0.3"
   resolved "https://artifacts.arrival.services:443/@eigenspace%2fargument-parser/-/argument-parser-1.0.3.tgz#4be66550108f65833a6daa96cf08178c4f58cf7e"
@@ -162,12 +167,12 @@
     eslint-plugin-unicorn "9.1.1"
     prettier "1.18.2"
 
-"@eigenspace/helper-scripts@1.0.74":
-  version "1.0.74"
-  resolved "https://artifacts.arrival.services:443/@eigenspace%2fhelper-scripts/-/helper-scripts-1.0.74.tgz#c91bf97e2d983cc770b4ffae589d8907e5c03da5"
-  integrity sha512-qT1W5kI4CXBCX51VPO58czQa2sl6c2N9HcW2l0bsDedYkvXGZq6Nk4Pl1qJjdlCHI5mSbrkw0YvRmWIe+D2roQ==
+"@eigenspace/helper-scripts@2.0.3-core":
+  version "2.0.3-core"
+  resolved "https://registry.yarnpkg.com/@eigenspace/helper-scripts/-/helper-scripts-2.0.3-core.tgz#b3f98e5712cf5524659660a5b01b636a9cc128d1"
+  integrity sha512-apts52s4lZSqReQyjDy5a44XwH2M6bGq6fKouegJZnIwYprdeBnwbCYlR7GJH6icYtlJB0jKRTY1E4JskXz7lw==
   dependencies:
-    minimist "1.2.0"
+    "@eigenspace/argument-parser" "1.0.2"
 
 "@jest/console@^24.7.1":
   version "24.7.1"
@@ -3969,7 +3974,7 @@ minimist@0.0.8:
   resolved "https://artifacts.arrival.services:443/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
   integrity sha1-hX/Kv8M5fSYluCKCYuhqp6ARsF0=
 
-minimist@1.2.0, minimist@^1.1.1, minimist@^1.2.0:
+minimist@^1.1.1, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://artifacts.arrival.services:443/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
   integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
