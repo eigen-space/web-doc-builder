@@ -1,0 +1,61 @@
+{
+    "name": "@eigenspace/doc-builder",
+    "version": "1.0.0",
+    "private": false,
+    "scripts": {
+        "build:package": "webpack --display-error-details --config webpack.config.package.js --p --progress --mode production && yarn bundle-dts",
+        "bundle-dts": "node node_modules/@eigenspace/helper-scripts/scripts/project/bundle-dts.js",
+        "lint:code": "eslint --ext .js,.jsx,.ts,.tsx",
+        "lint:fix": "yarn lint:code --fix",
+        "lint:markdown": "node ./node_modules/@eigenspace/codestyle/scripts/markdown-lint.js",
+        "lint": "yarn lint:code . && yarn lint:markdown",
+        "test": "jest --coverage",
+        "test:ci": "jest --ci --coverage",
+        "tsc": "tsc",
+        "deploy:publish": "npx -p @eigenspace/package-publisher@0.0.3 publish",
+        "hooks:pre-push": "yarn lint && yarn test && yarn build:package",
+        "script:update-deps-local": "node node_modules/@eigenspace/helper-scripts/scripts/project/update-deps.js",
+        "script:update-deps-remote": "npx -p @eigenspace/helper-scripts update-deps"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "yarn hooks:pre-push",
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "yarn lint:fix",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "@eigenspace/argument-parser": "1.0.3",
+        "@eigenspace/helper-scripts": "2.0.5-core",
+        "@phenomnomnominal/tsquery": "3.0.0"
+    },
+    "devDependencies": {
+        "@eigenspace/codestyle": "1.1.64",
+        "@types/jest": "24.9.0",
+        "@types/node": "11.9.5",
+        "clean-webpack-plugin": "1.0.1",
+        "copy-webpack-plugin": "4.6.0",
+        "eslint": "5.16.0",
+        "husky": "1.3.1",
+        "jest": "24.9.0",
+        "lint-staged": "8.1.5",
+        "prettier": "1.18.2",
+        "ts-jest": "24.0.2",
+        "ts-loader": "5.3.3",
+        "typescript": "3.3.1",
+        "webpack": "4.29.0",
+        "webpack-cli": "3.2.1"
+    },
+    "main": "index.js",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eigenspace/web-doc-builder.git"
+    },
+    "license": "MIT"
+}
